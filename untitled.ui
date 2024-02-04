@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>loginWindow</class>
+ <widget class="QMainWindow" name="loginWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1087</width>
+    <height>759</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Baza Finansów</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(42, 198, 255);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="loginField">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>260</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+    border: 2px solid #4A76A8; /* Granatowa obwódka */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    padding: 5px; /* Wewnętrzny odstęp */
+    background-color: #F0F0F0; /* Jasnoszare tło */
+    color: #333; /* Ciemnoszary tekst */
+    text-align: right; /* Tekst wyrównany do prawej */
+}
+
+QLineEdit:hover {
+    border-color: #678ABE; /* Jasniejsza granatowa obwódka przy najechaniu */
+}
+
+QLineEdit:focus {
+    border-color: #285480; /* Ciemniejsza granatowa obwódka przy fokusie */
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
