@@ -8,7 +8,7 @@ import UI.register.sources.register_rc
 '''
 Main class, when the program starts.
 Each function has only button operations.
-hehe
+
 '''
 
 class App(QMainWindow):

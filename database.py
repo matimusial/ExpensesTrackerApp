@@ -34,15 +34,11 @@ class Database:
 
         self.connection.commit()
 
-        cursor.close()
-
     def checkLogin(self, login):
 
         cursor = self.connection.cursor()
 
         cursor.execute("SELECT login FROM users")
-
-        cursor.close()
 
         results = cursor.fetchall() #returns list of tuples eg. [("login",),]
 
