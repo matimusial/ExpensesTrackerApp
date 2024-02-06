@@ -1,11 +1,14 @@
-from PyQt5.QtWidgets import QMessageBox
-import database
+from PyQt5.QtCore import Qt
+
+import formValidation
+from database import Database
+from formValidation import FormValidation
+from notifications import Notifications
 
 
 class Register:
     def __init__(self, ui):
         self.ui = ui
-        self.database = database.Database()
 
         self.user_data = {
             "firstName": self.ui.firstNameLabel,
@@ -15,43 +18,50 @@ class Register:
             "password2": self.ui.password2Label,
         }
 
-    def prepareRegistration(self):
+        styleSheet = self.ui.centralwidget.styleSheet()
+        defaultAlignment = Qt.AlignLeft
 
-        form_data = {}
-        for key, label in self.user_data.items():
-            form_data[key] = label.text()   # reads a values form labels to a dict eg. firstName: "mateusz" etc
+        self.passwordError = "Hasła się różnią!"
+        self.Pass = "✔"
+        self.PassStyleSheet = "color: green;font-size: 20px;"
+        self.loginError = "Login jest już używany!"
+        self.PassAlignment = Qt.AlignCenter
 
-        if self.fillCheck(form_data) == False: return
+        self.database = Database()
+        self.formValidation = FormValidation()
+        self.notifications = Notifications(styleSheet, defaultAlignment)
 
-        if form_data["password"] != form_data["password2"]:
-            self.ui.passwordDuplicateLabel.setText("Hasła się różnią!")
-            return
+    def Registration(self):
 
-        if self.database.checkLogin(form_data["login"]) == False:
-            self.ui.loginDuplicateLabel.setText("Login jest już używany")
-            return
+        form_data = self.formValidation.readForms(self.user_data)
 
-        if self.confirmationPrompt() == False: return
+        if self.formValidation.fillCheck(form_data) == False: return
 
-        #hash()
-        self.database.register(form_data["firstName"], form_data["lastName"], form_data["login"], form_data["password"])
+        self.notifications.setStyleSheet(self.ui.centralwidget)
+        self.notifications.setAlignment(self.ui.passwordDuplicateLabel)
+        self.notifications.setAlignment(self.ui.loginDuplicateLabel)
 
+        error = True  # False - error, True no errors
 
-    def confirmationPrompt(self):
-
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Czy chcesz założyć konto na podane dane?")
-        msgBox.setWindowTitle("Potwierdzenie rejestracji")
-        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        returnValue = msgBox.exec()
-
-        if returnValue == QMessageBox.Yes:
-            return True
+        if self.formValidation.passwordCheck(form_data["password"], form_data["password2"]) == False:
+            error = False
+            self.notifications.setNotification(self.ui.passwordDuplicateLabel, self.passwordError)
         else:
-            return False
+            self.notifications.setStyleSheet(self.ui.passwordDuplicateLabel, self.PassStyleSheet)
+            self.notifications.setNotification(self.ui.passwordDuplicateLabel, self.Pass)
+            self.notifications.setAlignment(self.ui.passwordDuplicateLabel, self.PassAlignment)
 
-    def fillCheck(self, data):
-        for value in data.values():
-            if value == "": return False
-        return True
+        if self.database.loginDBCheck(form_data["login"]) == False:
+            error = False
+            self.notifications.setNotification(self.ui.loginDuplicateLabel, self.loginError)
+        else:
+            self.notifications.setStyleSheet(self.ui.loginDuplicateLabel, self.PassStyleSheet)
+            self.notifications.setNotification(self.ui.loginDuplicateLabel, self.Pass)
+            self.notifications.setAlignment(self.ui.loginDuplicateLabel, self.PassAlignment)
+
+        if error == False: return
+
+
+        if self.notifications.confirmationPrompt("Czy chcesz założyć konto na podane dane?","Potwierdzenie rejestracji") == False: return
+
+        self.database.register(form_data["firstName"], form_data["lastName"], form_data["login"], form_data["password"])

@@ -34,7 +34,7 @@ class Database:
 
         self.connection.commit()
 
-    def checkLogin(self, login):
+    def loginDBCheck(self, login):
 
         cursor = self.connection.cursor()
 

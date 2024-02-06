@@ -33,7 +33,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">QWidget{
+    <string notr="true">QWidget {
 	font-family: 'Roboto', sans-serif;
     font-size: 16px;
 	font-weight: bold;
@@ -47,6 +47,31 @@ QLineEdit {
     color: rgb(238, 238, 231);
     position: relative;
 
+}
+
+#loginDuplicateLabel, #passwordDuplicateLabel {
+    background-color: transparent;
+    color: rgba(230, 0, 0, 0.6);
+    position: relative;
+	font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+	font-style:italic;
+}
+
+QPushButton {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+QPushButton:hover {
+    border-color: #ffffff;
 }</string>
    </property>
    <widget class="QLabel" name="background">
@@ -103,21 +128,11 @@ QLineEdit {
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color: rgba(255, 255, 255, 0.2); /* Półprzezroczyste tło */
-    color: #ffffff; /* Biały tekst */
-    border: 1px solid #ffffff; /* Biała obwódka */
-    padding: 10px 20px; /* Odpowiednie wypełnienie */
-    border-radius: 20px; /* Okrągłe rogi */
-    text-transform: uppercase; /* Tekst wielkimi literami */
-    font-weight: bold; /* Pogrubienie tekstu */
-    font-size: 14px; /* Rozmiar czcionki */
-    transition: all 0.3s ease; /* Animacja przejścia */
-    cursor: pointer; /* Kursor w formie wskaźnika */
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 QPushButton:hover {
-    background-color: rgba(255, 255, 255, 0.3); /* Zwiększenie przejrzystości tła przy najechaniu */
-    border-color: #ffffff; /* Biała obwódka */
+    background-color: rgba(255, 255, 255, 0.3);
 }</string>
     </property>
     <property name="text">
@@ -349,21 +364,11 @@ QPushButton:hover {
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color: rgba(99, 188, 230, 0.4); /* Półprzezroczyste tło */
-    color: #ffffff; /* Biały tekst */
-    border: 1px solid #ffffff; /* Biała obwódka */
-    padding: 10px 20px; /* Odpowiednie wypełnienie */
-    border-radius: 20px; /* Okrągłe rogi */
-    text-transform: uppercase; /* Tekst wielkimi literami */
-    font-weight: bold; /* Pogrubienie tekstu */
-    font-size: 14px; /* Rozmiar czcionki */
-    transition: all 0.3s ease; /* Animacja przejścia */
-    cursor: pointer; /* Kursor w formie wskaźnika */
+    background-color: rgba(99, 188, 230, 0.4);
 }
 
 QPushButton:hover {
-     background-color: rgba(99, 188, 230, 0.6); /* Półprzezroczyste tło */
-    border-color: #ffffff; /* Biała obwódka */
+     background-color: rgba(99, 188, 230, 0.6);
 }</string>
     </property>
     <property name="text">
@@ -380,12 +385,7 @@ QPushButton:hover {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">    background-color: transparent;
-    color: rgba(230, 0, 0, 0.6);
-    position: relative;
-	font-family: 'Roboto', sans-serif;
-    font-size: 11px;
-	font-style:italic;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
@@ -401,15 +401,13 @@ QPushButton:hover {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">    background-color: transparent;
-    color: rgba(230, 0, 0, 0.6);
-    position: relative;
-	font-family: 'Roboto', sans-serif;
-    font-size: 11px;
-	font-style:italic;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
   </widget>

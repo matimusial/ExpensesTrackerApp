@@ -27,7 +27,7 @@ class App(QMainWindow):
         ui = uic.loadUi("UI/register/register.ui", self)
         self.register = register.Register(ui)
         self.backButton.clicked.connect(self.loadLoginUI)
-        self.registerButton.clicked.connect(self.register.prepareRegistration)
+        self.registerButton.clicked.connect(self.register.Registration)
 
 app = QApplication(sys.argv)
 window = App()
