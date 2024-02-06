@@ -47,6 +47,24 @@ QLineEdit {
     color: rgb(238, 238, 231);
     position: relative;
 
+}
+
+QPushButton {
+    background-color: rgba(255, 255, 255, 0.2); /* Półprzezroczyste tło */
+    color: #ffffff; /* Biały tekst */
+    border: 1px solid #ffffff; /* Biała obwódka */
+    padding: 10px 20px; /* Odpowiednie wypełnienie */
+    border-radius: 20px; /* Okrągłe rogi */
+    text-transform: uppercase; /* Tekst wielkimi literami */
+    font-weight: bold; /* Pogrubienie tekstu */
+    font-size: 14px; /* Rozmiar czcionki */
+    transition: all 0.3s ease; /* Animacja przejścia */
+    cursor: pointer; /* Kursor w formie wskaźnika */
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Zwiększenie przejrzystości tła przy najechaniu */
+    border-color: #ffffff; /* Biała obwódka */
 }</string>
    </property>
    <widget class="QLabel" name="background">
@@ -86,13 +104,13 @@ QLineEdit {
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="login.qrc">:/background/background.png</pixmap>
+     <pixmap resource="sources/login.qrc">:/background/background.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="loginButton">
     <property name="geometry">
      <rect>
       <x>440</x>
@@ -102,23 +120,7 @@ QLineEdit {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color: rgba(255, 255, 255, 0.2); /* Półprzezroczyste tło */
-    color: #ffffff; /* Biały tekst */
-    border: 1px solid #ffffff; /* Biała obwódka */
-    padding: 10px 20px; /* Odpowiednie wypełnienie */
-    border-radius: 20px; /* Okrągłe rogi */
-    text-transform: uppercase; /* Tekst wielkimi literami */
-    font-weight: bold; /* Pogrubienie tekstu */
-    font-size: 14px; /* Rozmiar czcionki */
-    transition: all 0.3s ease; /* Animacja przejścia */
-    cursor: pointer; /* Kursor w formie wskaźnika */
-}
-
-QPushButton:hover {
-    background-color: rgba(255, 255, 255, 0.3); /* Zwiększenie przejrzystości tła przy najechaniu */
-    border-color: #ffffff; /* Biała obwódka */
-}</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Login</string>
@@ -226,10 +228,53 @@ QPushButton:hover {
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="registerButton">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>520</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 10px;
+padding: 5px 10px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Zarejestruj się</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="errorLabel">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>250</y>
+      <width>451</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">    background-color: transparent;
+    color: rgba(230, 0, 0, 0.6);
+    position: relative;
+	font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+	font-style:italic;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
-  <include location="login.qrc"/>
+  <include location="sources/login.qrc"/>
+  <include location="sources/login.qrc"/>
  </resources>
  <connections/>
 </ui>
