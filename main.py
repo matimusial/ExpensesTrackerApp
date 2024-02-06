@@ -1,34 +1,43 @@
+import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import uic
-import sys
-import database, register
+
+from database import Database
+from register import Register
+
+# Importowanie zasobów z UI
 import UI.login.sources.login_rc
 import UI.register.sources.register_rc
 
-'''
-Main class, when the program starts.
-Each function has only button operations.
-
-'''
 
 class App(QMainWindow):
+    """Główna klasa aplikacji uruchamianej przy starcie.
+
+    Każda funkcja w tej klasie obsługuje operacje związane z przyciskami.
+    """
+
     def __init__(self):
-        super(App, self).__init__()
-        self.database = database.Database()
-        self.loadLoginUI()
+        super().__init__()
+        self.database = Database()
+        self.load_login_ui()
         self.show()
 
-    def loadLoginUI(self):
+    def load_login_ui(self):
+        """Ładuje interfejs użytkownika dla ekranu logowania."""
         uic.loadUi("UI/login/login.ui", self)
-        if hasattr(self.database, 'error'): self.errorLabel.setText(self.database.error)
-        self.registerButton.clicked.connect(self.loadRegisterUI)
+        if hasattr(self.database, 'error'):
+            self.errorLabel.setText(self.database.error)
+        self.registerButton.clicked.connect(self.load_register_ui)
 
-    def loadRegisterUI(self):
+    def load_register_ui(self):
+        """Ładuje interfejs użytkownika dla ekranu rejestracji."""
         ui = uic.loadUi("UI/register/register.ui", self)
-        self.register = register.Register(ui)
-        self.backButton.clicked.connect(self.loadLoginUI)
-        self.registerButton.clicked.connect(self.register.Registration)
+        self.register = Register(ui)
+        self.backButton.clicked.connect(self.load_login_ui)
+        self.registerButton.clicked.connect(self.register.registration)
 
-app = QApplication(sys.argv)
-window = App()
-app.exec_()
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = App()
+    sys.exit(app.exec_())

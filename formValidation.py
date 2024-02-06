@@ -1,26 +1,32 @@
-from PyQt5.QtCore import Qt
 
 class FormValidation:
+    """Klasa do walidacji formularzy."""
+
     def __init__(self):
         pass
 
-    def readForms(self, user_data):
+    def read_forms(self, user_data):
+        """Czyta dane z formularzy i zapisuje je w słowniku."""
         form_data = {}
         for key, label in user_data.items():
-            form_data[key] = label.text()  # reads a values form labels to a dict eg. firstName: "mateusz" etc
+            form_data[key] = label.text()  # Przeczytane wartości z etykiet, np. firstName: "Mateusz"
         return form_data
 
-    def fillCheck(self, data):
+    def fill_check(self, data):
+        """Sprawdza, czy wszystkie pola formularza zostały wypełnione."""
         for value in data.values():
-            if value == "": return False
+            if value == "":
+                return False
         return True
 
-    def loginCheck(self, login):
-
+    def login_check(self, login):
+        """Miejsce na implementację walidacji loginu."""
         pass
 
-    def passwordCheck(self, password, password2):
-        if password != password2: return True
+    def password_check(self, password):
+        """Miejsce na implementację walidacji hasła."""
+        pass
 
-    def nameCheck(self, name):
+    def name_check(self, name):
+        """Miejsce na implementację walidacji imienia."""
         pass
