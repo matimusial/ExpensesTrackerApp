@@ -414,6 +414,15 @@ QPushButton:hover {
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>firstNameLabel</tabstop>
+  <tabstop>lastNameLabel</tabstop>
+  <tabstop>loginLabel</tabstop>
+  <tabstop>passwordLabel</tabstop>
+  <tabstop>password2Label</tabstop>
+  <tabstop>registerButton</tabstop>
+  <tabstop>backButton</tabstop>
+ </tabstops>
  <resources>
   <include location="sources/register.qrc"/>
  </resources>

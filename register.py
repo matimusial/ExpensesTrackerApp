@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import QMessageBox
-
 import database
 
 
@@ -35,7 +34,6 @@ class Register:
         if self.confirmationPrompt() == False: return
 
         #hash()
-
         self.database.register(form_data["firstName"], form_data["lastName"], form_data["login"], form_data["password"])
 
 

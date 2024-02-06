@@ -21,35 +21,28 @@ class Database:
         except mysql.connector.Error:
             self.error = "Błąd połaczenia z internetem, zrestartuj aplikację."
 
+    def __del__(self):
+        if self.connection.is_connected():
+            self.connection.close()
+
+
     def register(self, firstName, lastName, login, password):
 
         cursor = self.connection.cursor()
 
-        # Na przykład wykonajmy prosty zapytanie SELECT
-        cursor.execute(f"INSERT INTO `users` (`FirstName`, `LastName`, `Login`, `Password`) VALUES ('{firstName}', '{lastName}', '{login}', '{password}')")
+        cursor.execute("INSERT INTO `users` (`firstName`, `lastName`, `login`, `password`) VALUES (%s, %s, %s, %s)", (firstName, lastName, login, password))
 
+        self.connection.commit()
 
-        # Pobierz wyniki zapytania
-        results = cursor.fetchall()
-
-        print(type(results))
-
-
-        # Wyświetl wyniki
-        for row in results:
-            print(row)
-
-        # Nie zapomnij zamknąć połączenia, gdy skończysz pracę z bazą danych
-        self.connection.close()
+        cursor.close()
 
     def checkLogin(self, login):
-
 
         cursor = self.connection.cursor()
 
         cursor.execute("SELECT login FROM users")
 
-        self.connection.close()
+        cursor.close()
 
         results = cursor.fetchall() #returns list of tuples eg. [("login",),]
 
@@ -62,4 +55,10 @@ class Database:
             pass
 
         def hash(self, password):
+            pass
+
+        def encrypt(self):
+            pass
+
+        def decrypt(self):
             pass
