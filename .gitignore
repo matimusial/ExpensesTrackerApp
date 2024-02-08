@@ -1,5 +1,5 @@
 __pycache__/
 .idea/
-key
-key_backup/
+secrets/
+secrets_backup/
 tests.py

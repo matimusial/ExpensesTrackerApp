@@ -7,11 +7,11 @@ class Notifications:
     A class for managing notifications and alerts in the application.
     """
 
-    def __init__(self, style_sheet, alignment):
+    def __init__(self, style_sheet="", alignment=""):
         self.style_sheet = style_sheet
         self.alignment = alignment
 
-    def confirmation_prompt(self, text, title):
+    def confirmation_prompt(self, text, title="Confirmation"):
         msg_box = QMessageBox()
         msg_box.setIcon(QMessageBox.Information)
         msg_box.setText(text)
