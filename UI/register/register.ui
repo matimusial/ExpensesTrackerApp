@@ -49,7 +49,7 @@ QLineEdit {
 
 }
 
-#loginDuplicateLabel, #passwordDuplicateLabel {
+#loginErrorLabel, #passwordErrorLabel {
     background-color: transparent;
     color: rgba(230, 0, 0, 0.6);
     position: relative;
@@ -375,7 +375,7 @@ QPushButton:hover {
      <string>WRÓĆ</string>
     </property>
    </widget>
-   <widget class="QLabel" name="passwordDuplicateLabel">
+   <widget class="QLabel" name="passwordErrorLabel">
     <property name="geometry">
      <rect>
       <x>610</x>
@@ -391,7 +391,7 @@ QPushButton:hover {
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="loginDuplicateLabel">
+   <widget class="QLabel" name="loginErrorLabel">
     <property name="geometry">
      <rect>
       <x>610</x>

@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QMessageBox
 
 
 class Notifications:
-
     """
     A class for managing notifications and alerts in the application.
     """
