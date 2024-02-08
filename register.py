@@ -20,12 +20,12 @@ class Register:
             "last_name": self.ui.lastNameLabel,
             "login": self.ui.loginLabel,
             "password": self.ui.passwordLabel,
-            "password2": self.ui.password2Label,
+            "password2": self.ui.password2Label
         }
 
         self.duplicate_labels = {
             "password": self.ui.passwordDuplicateLabel,
-            "login": self.ui.loginDuplicateLabel,
+            "login": self.ui.loginDuplicateLabel
         }
 
         self.error_messages = {

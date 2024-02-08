@@ -4,6 +4,7 @@ from PyQt5 import uic
 
 from database import Database
 from register import Register
+from login import Login
 
 import UI.login.sources.login_rc
 import UI.register.sources.register_rc
@@ -25,10 +26,13 @@ class App(QMainWindow):
 
     def load_login_ui(self):
 
-        uic.loadUi("UI/login/login.ui", self)
+        ui = uic.loadUi("UI/login/login.ui", self)
+        self.login = Login(ui)
         if hasattr(self.database, 'error'):
             self.errorLabel.setText(self.database.error)
         self.registerButton.clicked.connect(self.load_register_ui)
+
+        self.loginButton.clicked.connect(self.login.login)
 
     def load_register_ui(self):
 
