@@ -112,9 +112,9 @@ class Register:
             if not self.password_duplication_check(form_data["password"], form_data["password2"]):
                 error = True
 
-        if not error:
-            self.update_label(self.error_labels[key], self.pass_style_sheet, self.pass_mark, self.pass_alignment)
-        else:
+        if error:
             self.notifications.set_notification(self.error_labels[key], self.error_messages[key])
+        else:
+            self.update_label(self.error_labels[key], self.pass_style_sheet, self.pass_mark, self.pass_alignment)
 
         return error
