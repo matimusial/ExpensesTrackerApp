@@ -50,9 +50,7 @@ class Register:
         """
         form_data = self.form_validation.read_forms(self.user_data)
 
-        for label in self.error_labels.values():  # resets the stylesheet in error labels
-            self.notifications.set_style_sheet(label, "")
-            self.notifications.set_alignment(label)
+        self.notifications.clear_formatting(self.error_labels)
 
         if not self.form_validation.fill_check(form_data):
             return

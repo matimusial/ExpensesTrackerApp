@@ -31,3 +31,8 @@ class Notifications:
 
     def set_notification(self, label, text=""):
         label.setText(text)
+
+    def clear_formatting(self, label_dict):
+        for label in label_dict.values():
+            self.set_style_sheet(label, "")
+            self.set_alignment(label)
