@@ -1,1 +1,1 @@
-# ExpensesTrackerApp for polish people
+# ExpensesTrackerApp in Polish
