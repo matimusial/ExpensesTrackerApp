@@ -35,10 +35,6 @@ class Register:
             "login": "Login jest już używany!"
         }
 
-        self.pass_mark = "✔"
-        self.pass_style_sheet = "color: green; font-size: 20px;"
-        self.pass_alignment = Qt.AlignCenter
-
         self.database = Database()
         self.form_validation = FormValidation()
 
@@ -104,6 +100,9 @@ class Register:
         :return: (boolean) True if an error is found, False otherwise.
         """
         error = False
+        pass_mark = "✔"
+        pass_style_sheet = "color: green; font-size: 20px;"
+        pass_alignment = Qt.AlignCenter
 
         if key == "login":
             if not self.database.login_db_check(form_data[key]):
@@ -115,6 +114,6 @@ class Register:
         if error:
             self.notifications.set_notification(self.error_labels[key], self.error_messages[key])
         else:
-            self.update_label(self.error_labels[key], self.pass_style_sheet, self.pass_mark, self.pass_alignment)
+            self.update_label(self.error_labels[key], pass_style_sheet, pass_mark, pass_alignment)
 
         return error
