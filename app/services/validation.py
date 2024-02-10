@@ -18,7 +18,7 @@ class FormValidation:
         """
         form_data = {}
         for key, label in user_data.items():
-            form_data[key] = label.text()  # for example:
+            form_data[key] = label.text()
         return form_data
 
     def fill_check(self, data):
@@ -33,6 +33,12 @@ class FormValidation:
         return True
 
     def login_check(self, login):
+
+        if len(login)>6 or len(login)>30:
+            raise ValueError("Login powinien mieć od 6 do 30 znaków.")
+        return True
+
+    def word_check(self, word):
         pass
 
     def password_check(self, password):
