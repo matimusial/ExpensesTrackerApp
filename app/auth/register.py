@@ -41,7 +41,7 @@ class Register:
         style_sheet = self.ui.centralwidget.styleSheet()
         default_alignment = self.error_labels["login"].alignment()
 
-        self.notifications = Notifications(style_sheet, default_alignment)
+        self.notifications = Notifications(style_sheet, default_alignment, self.ui)
 
     def prepare_registration(self):
         """
