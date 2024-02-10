@@ -2,12 +2,12 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import uic
 
-from database import Database
-from register import Register
-from login import Login
+from app.database.database import Database
+from app.auth.register import Register
+from app.auth.login import Login
 
-import UI.login.sources.login_rc
-import UI.register.sources.register_rc
+import app.ui.login.sources.login_rc
+import app.ui.register.sources.register_rc
 
 
 class App(QMainWindow):

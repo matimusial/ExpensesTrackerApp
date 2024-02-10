@@ -1,5 +1,6 @@
-from database import Database
-from formValidation import FormValidation
+from app.database.database import Database
+from app.services.validation import FormValidation
+
 
 class Login:
     def __init__(self, ui):

@@ -1,5 +1,6 @@
 import mysql.connector
-from encryption import Encryption
+
+from app.services.encryption import Encryption
 
 
 class Database:

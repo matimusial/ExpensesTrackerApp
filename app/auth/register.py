@@ -1,8 +1,8 @@
 from PyQt5.QtCore import Qt
 
-from database import Database
-from formValidation import FormValidation
-from notifications import Notifications
+from app.database.database import Database
+from app.services.validation import FormValidation
+from app.utils.notifications import Notifications
 
 
 class Register:

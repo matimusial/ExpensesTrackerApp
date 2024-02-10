@@ -1,7 +1,6 @@
-import bcrypt
+import bcrypt, base64
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-import base64
 
 
 class Encryption:
