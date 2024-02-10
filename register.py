@@ -50,7 +50,8 @@ class Register:
         """
         form_data = self.form_validation.read_forms(self.user_data)
 
-        self.notifications.clear_formatting(self.error_labels)
+        for label in self.error_labels.values():
+            self.notifications.clear_formatting(label)
 
         if not self.form_validation.fill_check(form_data):
             return
@@ -68,18 +69,6 @@ class Register:
         if self.notifications.confirmation_prompt(prompt_text, prompt_title):
             self.database.register(form_data["first_name"], form_data["last_name"],
                                    form_data["login"], form_data["password"])
-
-    def update_label(self, label, style_sheet, notification, alignment):
-        """
-        Updates a label with specified styles and notification text.
-        :param label: (QLabel class) The label to be updated.
-        :param style_sheet: (str) The CSS style sheet to apply to the label.
-        :param notification: (str) The notification text to display on the label.
-        :param alignment: (Qt constant) The alignment for the notification text.
-        """
-        self.notifications.set_style_sheet(label, style_sheet)
-        self.notifications.set_notification(label, notification)
-        self.notifications.set_alignment(label, alignment)
 
     def password_duplication_check(self, password, password2):
         """
@@ -112,6 +101,6 @@ class Register:
         if error:
             self.notifications.set_notification(self.error_labels[key], self.error_messages[key])
         else:
-            self.update_label(self.error_labels[key], pass_style_sheet, pass_mark, pass_alignment)
+            self.notifications.update_label(self.error_labels[key], pass_style_sheet, pass_mark, pass_alignment)
 
         return error

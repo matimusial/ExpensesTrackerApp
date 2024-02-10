@@ -1,6 +1,7 @@
 import mysql.connector
 from encryption import Encryption
 
+
 class Database:
     """
     Represents a database connection handler.
@@ -11,6 +12,7 @@ class Database:
         """
         Initializes the Database class instance by setting up a connection to the MySQL database using credentials
         decrypted from a given URL path.
+        :raises ValueError: If it cannot connect to the database.
         """
         self.encryption = Encryption()
 
@@ -26,7 +28,8 @@ class Database:
                 database=url.split('/')[-1],
                 ssl_disabled=False
             )
-            self.cursor = self.connection.cursor()  # Tworzenie kursora w konstruktorze
+            self.cursor = self.connection.cursor()
+
         except mysql.connector.Error as e:
             self.error = "Błąd połączenia z internetem, zrestartuj aplikację."
             raise mysql.connector.Error(f"Error while connecting to database: {e}")

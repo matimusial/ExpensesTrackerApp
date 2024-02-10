@@ -3,6 +3,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import base64
 
+
 class Encryption:
     """
     Class for encrypting and decrypting data and hashing passwords.
@@ -21,6 +22,7 @@ class Encryption:
         Initialization of the Encryption class.
         Reads the encryption key from a file. The key should be a base64-encoded string,
         24 bytes in length when decoded, which corresponds to AES-192.
+        :raises ValueError: If the key is invalid.
         """
         key_path = "secrets/aes_key"
 
@@ -67,7 +69,6 @@ class Encryption:
         ciphertext = cipher.encrypt(pad(data, AES.block_size))
         ciphertext = cipher.iv + ciphertext
         return base64.b64encode(ciphertext).decode('utf-8')
-
 
     def decrypt(self, data):
         """
