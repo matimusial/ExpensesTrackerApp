@@ -21,6 +21,6 @@ class Login:
         if not self.form_validation.fill_check(form_data):
             return
 
-        if self.database.login_db_check(form_data["login"]) == True:
+        if self.database.login_db_check(form_data["login"]):
             print("Login nie istnieje")
             return

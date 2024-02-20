@@ -1,3 +1,5 @@
+import string
+
 
 class FormValidation:
     """
@@ -6,9 +8,18 @@ class FormValidation:
 
     def __init__(self):
         """
-        Initializes the FormValidation class.
+        Initializes the FormValidation class with rises_errors dictionary.
         """
-        pass
+        self.raises_errors = {
+            "lastname_content": "Nazwisko powinno zawierać tylko litery (en).",
+            "firstname_content": "Imię powinno zawierać tylko litery (en).",
+
+            "password_content": "Hasło powinno zawierać litery (en), cyfry oraz znaki specjalne.",
+            "login_content": "Login powinien zawierać tylko litery (en) lub cyfry.",
+
+            "password_len": "Hasło powinno mieć od 6 do 30 znaków.",
+            "login_len": "Login powinien mieć od 6 do 30 znaków."
+        }
 
     def read_forms(self, user_data):
         """
@@ -25,24 +36,62 @@ class FormValidation:
         """
         Checks if all form fields are filled.
         :param data: (dict) Text included in labels. {first_name: "Mateusz"}
-        :return: True if all fields are filled, False otherwise.
+        :return: (boolean) True if all fields are filled, False otherwise.
         """
         for value in data.values():
             if value == "":
                 return False
         return True
 
-    def login_check(self, login):
+    def validate_login(self, login):
+        """
+        Validates if login length is between 6 and 30 and if consists of letters or digits.
+        :param login: (str) login to validate.
+        :return: (boolean) False if login does not meet the validation criteria, True otherwise.
+        """
+        if len(login) < 6 or len(login) > 30:
+            return False
 
-        if len(login)>6 or len(login)>30:
-            raise ValueError("Login powinien mieć od 6 do 30 znaków.")
+        charset = set(string.ascii_letters + string.digits)
+
+        for i in login:
+            if i not in charset:
+                return False
+
         return True
 
-    def word_check(self, word):
-        pass
+    def validate_password(self, password):
+        """
+        Validates if password length is between 6 and 30 and if consists of letters, digits and special characters.
+        :param password: (str) password to validate.
+        :return: (boolean) False if password does not meet the validation criteria, True otherwise.
+        """
+        if len(password) < 6 or len(password) > 30:
+            return False
 
-    def password_check(self, password):
-        pass
+        charset = set(string.ascii_letters + string.digits + string.punctuation)
+
+        for i in password:
+            if i not in charset:
+                return False
+
+        return True
 
     def name_check(self, firstname, lastname):
-        pass
+        """
+        Validates if firstname and lastname consist only of letters.
+        :param firstname: (str) first name to validate.
+        :param lastname: (str) last name to validate.
+        :return: (boolean) False if firstname or lastname does not meet the validation criteria, True otherwise.
+        """
+        charset = set(string.ascii_letters)
+
+        for i in firstname:
+            if i not in charset:
+                return False
+
+        for i in lastname:
+            if i not in charset:
+                return False
+
+        return True

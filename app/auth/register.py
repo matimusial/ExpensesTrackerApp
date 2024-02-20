@@ -18,8 +18,8 @@ class Register:
         self.ui = ui
 
         self.user_data = {
-            "first_name": self.ui.firstNameLabel,
-            "last_name": self.ui.lastNameLabel,
+            "firstname": self.ui.firstNameLabel,
+            "lastname": self.ui.lastNameLabel,
             "login": self.ui.loginLabel,
             "password": self.ui.passwordLabel,
             "password2": self.ui.password2Label
@@ -56,18 +56,24 @@ class Register:
         if not self.form_validation.fill_check(form_data):
             return
 
+        # self.form_validation.name_check(form_data["firstname"], form_data["lastname"])
+        # self.form_validation.validate_login(form_data["login"])
+        # self.form_validation.validate_password(form_data["password"])
+        # "✖"
+
         error_states = []  # False: no error; True: error
 
-        for key, value in self.error_messages.items():  # checks both conditions for registration
+        for key, value in self.error_messages.items():
             error_states.append(self.check_errors(form_data, key))
 
-        if True in error_states: return
+        if True in error_states:
+            return
 
         prompt_text = "Czy chcesz założyć konto na podane dane?"
         prompt_title = "Potwierdzenie rejestracji"
 
-        if self.notifications.confirmation_prompt(prompt_text, prompt_title):
-            self.database.register(form_data["first_name"], form_data["last_name"],
+        if self.notifications.question_prompt(prompt_text, prompt_title):
+            self.database.register(form_data["firstname"], form_data["lastname"],
                                    form_data["login"], form_data["password"])
 
     def password_duplication_check(self, password, password2):
@@ -81,7 +87,7 @@ class Register:
 
     def check_errors(self, form_data, key):
         """
-        Validates login duplicate in database and password matching rules.
+        Validates login duplicate in database and both password labels matching rules.
         :param form_data: (dict) The dictionary containing user input data.
         :param key: (str) The dict-key indicating login or password.
         :return: (boolean) True if an error is found, False otherwise.

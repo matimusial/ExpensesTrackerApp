@@ -22,19 +22,32 @@ class Notifications:
         self.style_sheet = style_sheet
         self.alignment = alignment
 
-    def confirmation_prompt(self, text, title="Confirmation"):
+    def question_prompt(self, text, title="Confirmation"):
         """
-        Displays a modal confirmation dialog with specified text and title, providing Yes and No options.
-        :param text: (str) Text to display in the confirmation prompt.
-        :param title: (str) Title of the confirmation prompt window.
+        Displays a modal question dialog with specified text and title, providing Yes and No options.
+        :param text: (str) Text to display in the question prompt.
+        :param title: (str) Title of the question prompt window.
         :return: (boolean) True if user clicks 'Yes', False otherwise.
         """
         msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Information)
+        msg_box.setIcon(QMessageBox.Question)
         msg_box.setText(text)
         msg_box.setWindowTitle(title)
         msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         return msg_box.exec() == QMessageBox.Yes
+
+    def warning_prompt(self, text, title="Warning"):
+        """
+        Displays a modal warning dialog with specified text and title, providing Ok options.
+        :param text: (str) Text to display in the warning prompt.
+        :param title: (str) Title of the warning prompt window.
+        """
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Warning)
+        msg_box.setText(text)
+        msg_box.setWindowTitle(title)
+        msg_box.setStandardButtons(QMessageBox.Ok)
+        msg_box.exec()
 
     def set_style_sheet(self, label, style_sheet=None):
         """
