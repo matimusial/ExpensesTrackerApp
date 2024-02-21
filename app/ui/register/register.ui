@@ -463,7 +463,7 @@ QPushButton:hover {
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="registerButton_2">
+   <widget class="QPushButton" name="infoButton">
     <property name="geometry">
      <rect>
       <x>460</x>

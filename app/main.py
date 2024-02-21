@@ -46,6 +46,7 @@ class App(QMainWindow):
         self.register = Register(ui)
         self.backButton.clicked.connect(self.load_login_ui)
         self.registerButton.clicked.connect(self.register.prepare_registration)
+        self.infoButton.clicked.connect(self.register.show_info)
 
 
 if __name__ == "__main__":

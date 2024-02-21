@@ -99,7 +99,12 @@ class Register:
         return password == password2
 
     def validate_input(self, form_data, key):
-
+        """
+        Validates the input data based on the specified key.
+        :param form_data: (dict) The dictionary containing user input data.
+        :param key: (str) The dict-key indicating the type of input data to be validated.
+        :return: (boolean) True if an error is found, False otherwise.
+        """
         error = False
 
         if key == "first_name" or key == "last_name":
@@ -139,8 +144,23 @@ class Register:
         return error
 
     def handle_errors(self, error, key):
+        """
+        Handles the display of errors or success messages based on the validation results.
+        :param error: (boolean) True if an error is found, False otherwise.
+        :param key: (str) The dict-key indicating the type of input data.
+        """
         if error:
             self.notifications.set_notification(self.error_labels[key], self.messages[key])
         else:
             self.notifications.update_label(self.error_labels[key], self.pass_style_sheet, self.messages["pass_mark"],
                                             self.pass_alignment)
+
+    def show_info(self):
+        """
+        Displays information about the input data syntax policy.
+        """
+        info = ("• Imię i Nazwisko może się składać tylko z liter lub znaku '-',\n"
+                "• Login musi mieć od 6 do 30 znaków oraz może zawierać litery lub cyfry,\n"
+                "• Hasło musi mieć od 6 do 30 znaków oraz może zawierać litery, cyfry lub znaki specjalne.")
+
+        self.notifications.information_prompt(info, "Polityka składni.")

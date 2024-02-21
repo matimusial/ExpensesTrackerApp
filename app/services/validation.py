@@ -10,7 +10,14 @@ class FormValidation:
         """
         Initializes the FormValidation class with rises_errors dictionary.
         """
-        pass
+        self.raises_errors = {
+            "lastname_content": "Nazwisko powinno zawierać tylko litery (en).",
+            "firstname_content": "Imię powinno zawierać tylko litery (en).",
+            "password_content": "Hasło powinno zawierać litery (en), cyfry oraz znaki specjalne.",
+            "login_content": "Login powinien zawierać tylko litery (en) lub cyfry.",
+            "password_len": "Hasło powinno mieć od 6 do 30 znaków.",
+            "login_len": "Login powinien mieć od 6 do 30 znaków."
+        }
 
     def read_forms(self, user_data):
         """
@@ -74,7 +81,7 @@ class FormValidation:
         :param name: (str) name to validate.
         :return: (boolean) False if name does not meet the validation criteria, True otherwise.
         """
-        charset = set(string.ascii_letters + "-")
+        charset = set(string.ascii_letters + "-" + "ąćęłńóśźż")
 
         for i in name:
             if i not in charset:
