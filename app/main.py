@@ -31,7 +31,7 @@ class App(QMainWindow):
         """
         ui_path = "app/ui/login/login.ui"
         ui = uic.loadUi(ui_path, self)
-        self.login = Login(ui)
+        self.login = Login(self, ui)
         if hasattr(self.database, 'error'):
             self.errorLabel.setText(self.database.error)
         self.registerButton.clicked.connect(self.load_register_ui)
@@ -39,11 +39,11 @@ class App(QMainWindow):
 
     def load_register_ui(self):
         """
-        Loads the registration interface and sets up connections for the registration and back buttons.
+        Loads the registration interface and sets up connections for the registration, info and back buttons.
         """
         ui_path = "app/ui/register/register.ui"
         ui = uic.loadUi(ui_path, self)
-        self.register = Register(ui)
+        self.register = Register(self, ui)
         self.backButton.clicked.connect(self.load_login_ui)
         self.registerButton.clicked.connect(self.register.prepare_registration)
         self.infoButton.clicked.connect(self.register.show_info)

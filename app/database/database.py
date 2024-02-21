@@ -86,8 +86,21 @@ class Database:
                 return False
         return True
 
-    def login(self, username, password):
-        pass
+    def login(self, login, password):
+
+        try:
+            self.cursor.execute("SELECT login, password FROM users")
+        except Exception as e:
+            print(e)
+            return
+
+        results = self.cursor.fetchall()  # Returns a list of tuples, for example: [("login","password"),]
+        for result in results:
+            if self.encryption.decrypt(result[0]) == login:
+                if self.encryption.check_password(password, result[1]):
+                    return True
+
+        return False
 
     def clear_users_table(self):
         """

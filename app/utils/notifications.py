@@ -7,7 +7,7 @@ class Notifications:
     Provides methods to display confirmation prompts, set styles and alignments for labels.
     """
 
-    def __init__(self, style_sheet="", alignment="", ui=""):
+    def __init__(self, ui="", style_sheet="", alignment=""):
         """
         Initializes the Notifications class with style sheet and alignment.
         Ensures that UI is loaded before initialization.

@@ -10,12 +10,14 @@ class Register:
     A class responsible for user registration processes in the application.
     """
 
-    def __init__(self, ui):
+    def __init__(self, app, ui):
         """
         Initializes the Register class with UI elements, sets up user data and error handling structures.
+        :param app: The application instance.
         :param ui: The register interface object.
         """
         self.ui = ui
+        self.app = app
 
         self.user_data = {
             "first_name": self.ui.firstNameLabel,
@@ -54,7 +56,7 @@ class Register:
         style_sheet = self.ui.centralwidget.styleSheet()
         default_alignment = self.error_labels["login"].alignment()
 
-        self.notifications = Notifications(style_sheet, default_alignment, self.ui)
+        self.notifications = Notifications(self.ui, style_sheet, default_alignment)
 
     def prepare_registration(self):
         """
@@ -86,8 +88,20 @@ class Register:
 
         if self.notifications.question_prompt(self.messages["prompt_text"],
                                               self.messages["prompt_title"]):
-            self.database.register(form_data["first_name"], form_data["last_name"],
-                                   form_data["login"], form_data["password"])
+            self.database.register(self.capitalize_first_letter(form_data["first_name"]),
+                                   self.capitalize_first_letter(form_data["last_name"]),
+                                   form_data["login"],
+                                   form_data["password"])
+
+        self.app.load_login_ui()
+
+    def capitalize_first_letter(self, text):
+        """
+        Capitalize first letter of given string
+        :param text: (str) text to be capitalized
+        :return: (str) capitalized text
+        """
+        return text[0].upper() + text[1:]
 
     def password_duplication_check(self, password, password2):
         """
