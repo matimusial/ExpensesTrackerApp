@@ -18,22 +18,35 @@ class Register:
         self.ui = ui
 
         self.user_data = {
-            "firstname": self.ui.firstNameLabel,
-            "lastname": self.ui.lastNameLabel,
+            "first_name": self.ui.firstNameLabel,
+            "last_name": self.ui.lastNameLabel,
             "login": self.ui.loginLabel,
             "password": self.ui.passwordLabel,
             "password2": self.ui.password2Label
         }
 
         self.error_labels = {
+            "first_name": self.ui.firstNameErrorLabel,
+            "last_name": self.ui.lastNameErrorLabel,
+            "login": self.ui.loginErrorLabel,
             "password": self.ui.passwordErrorLabel,
-            "login": self.ui.loginErrorLabel
+            "password2": self.ui.password2ErrorLabel
         }
 
-        self.error_messages = {
-            "password": "Hasła się różnią!",
-            "login": "Login jest już używany!"
+        self.messages = {
+            "first_name": "Zła składnia imienia!",
+            "last_name": "Zła składnia nazwiska!",
+            "login_duplicate": "Login jest już używany!",
+            "login": "Zła składnia loginu!",
+            "password": "Zła składnia hasła!",
+            "password2": "Hasła się różnią!",
+            "pass_mark": "✔",
+            "prompt_text": "Czy chcesz założyć konto na podane dane?",
+            "prompt_title": "Potwierdzenie rejestracji"
         }
+
+        self.pass_style_sheet = "color: green; font-size: 20px;"
+        self.pass_alignment = Qt.AlignCenter
 
         self.database = Database()
         self.form_validation = FormValidation()
@@ -56,24 +69,24 @@ class Register:
         if not self.form_validation.fill_check(form_data):
             return
 
-        # self.form_validation.name_check(form_data["firstname"], form_data["lastname"])
-        # self.form_validation.validate_login(form_data["login"])
-        # self.form_validation.validate_password(form_data["password"])
-        # "✖"
+        # False: no error; True: error
+        error_states = []
 
-        error_states = []  # False: no error; True: error
-
-        for key, value in self.error_messages.items():
-            error_states.append(self.check_errors(form_data, key))
+        for key in ["first_name", "last_name", "login", "password"]:
+            error_states.append(self.validate_input(form_data, key))
 
         if True in error_states:
             return
 
-        prompt_text = "Czy chcesz założyć konto na podane dane?"
-        prompt_title = "Potwierdzenie rejestracji"
+        for key in ["login", "password2"]:
+            error_states.append(self.validate_credentials(form_data, key))
 
-        if self.notifications.question_prompt(prompt_text, prompt_title):
-            self.database.register(form_data["firstname"], form_data["lastname"],
+        if True in error_states:
+            return
+
+        if self.notifications.question_prompt(self.messages["prompt_text"],
+                                              self.messages["prompt_title"]):
+            self.database.register(form_data["first_name"], form_data["last_name"],
                                    form_data["login"], form_data["password"])
 
     def password_duplication_check(self, password, password2):
@@ -85,7 +98,25 @@ class Register:
         """
         return password == password2
 
-    def check_errors(self, form_data, key):
+    def validate_input(self, form_data, key):
+
+        error = False
+
+        if key == "first_name" or key == "last_name":
+            if not self.form_validation.validate_name(form_data[key]):
+                error = True
+        elif key == "login":
+            if not self.form_validation.validate_login(form_data[key]):
+                error = True
+        elif key == "password":
+            if not self.form_validation.validate_password(form_data[key]):
+                error = True
+
+        self.handle_errors(error, key)
+
+        return error
+
+    def validate_credentials(self, form_data, key):
         """
         Validates login duplicate in database and both password labels matching rules.
         :param form_data: (dict) The dictionary containing user input data.
@@ -93,20 +124,23 @@ class Register:
         :return: (boolean) True if an error is found, False otherwise.
         """
         error = False
-        pass_mark = "✔"
-        pass_style_sheet = "color: green; font-size: 20px;"
-        pass_alignment = Qt.AlignCenter
-
-        if key == "login":
+        if key == "login_duplicate":
+            # if login exists in database
             if not self.database.login_db_check(form_data[key]):
+                # mark error
                 error = True
-        elif key == "password":
+        elif key == "password2":
+            # if passwords does not match
             if not self.password_duplication_check(form_data["password"], form_data["password2"]):
                 error = True
 
-        if error:
-            self.notifications.set_notification(self.error_labels[key], self.error_messages[key])
-        else:
-            self.notifications.update_label(self.error_labels[key], pass_style_sheet, pass_mark, pass_alignment)
+        self.handle_errors(error, key)
 
         return error
+
+    def handle_errors(self, error, key):
+        if error:
+            self.notifications.set_notification(self.error_labels[key], self.messages[key])
+        else:
+            self.notifications.update_label(self.error_labels[key], self.pass_style_sheet, self.messages["pass_mark"],
+                                            self.pass_alignment)

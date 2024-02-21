@@ -17,7 +17,6 @@ class Notifications:
         :raises ValueError: If "ui" parameter is empty.
         """
         if ui == "":
-            print("UI is not loaded.")
             raise ValueError("UI is not loaded.")
         self.style_sheet = style_sheet
         self.alignment = alignment
@@ -36,14 +35,14 @@ class Notifications:
         msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         return msg_box.exec() == QMessageBox.Yes
 
-    def warning_prompt(self, text, title="Warning"):
+    def information_prompt(self, text, title="Information"):
         """
-        Displays a modal warning dialog with specified text and title, providing Ok options.
-        :param text: (str) Text to display in the warning prompt.
-        :param title: (str) Title of the warning prompt window.
+        Displays a modal information dialog with specified text and title, providing Ok options.
+        :param text: (str) Text to display in the information prompt.
+        :param title: (str) Title of the information prompt window.
         """
         msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Warning)
+        msg_box.setIcon(QMessageBox.Information)
         msg_box.setText(text)
         msg_box.setWindowTitle(title)
         msg_box.setStandardButtons(QMessageBox.Ok)

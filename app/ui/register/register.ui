@@ -49,10 +49,9 @@ QLineEdit {
 
 }
 
-#loginErrorLabel, #passwordErrorLabel {
+#firstNameErrorLabel, #lastNameErrorLabel, #loginErrorLabel, #password2ErrorLabel, #passwordErrorLabel {
     background-color: transparent;
     color: rgba(230, 0, 0, 0.6);
-    position: relative;
 	font-family: 'Roboto', sans-serif;
     font-size: 11px;
 	font-style:italic;
@@ -61,8 +60,8 @@ QLineEdit {
 QPushButton {
     color: #ffffff;
     border: 1px solid #ffffff;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 5px 5px;
+    border-radius: 15px;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 14px;
@@ -375,7 +374,7 @@ QPushButton:hover {
      <string>WRÓĆ</string>
     </property>
    </widget>
-   <widget class="QLabel" name="passwordDuplicateErrorLabel">
+   <widget class="QLabel" name="password2ErrorLabel">
     <property name="geometry">
      <rect>
       <x>610</x>
@@ -462,6 +461,29 @@ QPushButton:hover {
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="registerButton_2">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>530</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgba(255, 255, 255, 0.2);
+	image: url(:/info/info.png);
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

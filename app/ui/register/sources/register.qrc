@@ -2,6 +2,9 @@
   <qresource prefix="background">
     <file>background.png</file>
   </qresource>
+  <qresource prefix="info">
+    <file>info.png</file>
+  </qresource>
   <qresource prefix="password">
     <file>password.png</file>
   </qresource>
