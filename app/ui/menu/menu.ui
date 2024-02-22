@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Menu</class>
+ <widget class="QMainWindow" name="Menu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1011</width>
+    <height>829</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1011</width>
+    <height>829</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1011</width>
+    <height>829</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Menu</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+	font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+	font-weight: bold;
+}
+
+QLineEdit {
+    background-color: transparent;
+    border-bottom: 1.5px solid rgb(238, 238, 231);
+    border-radius: 0px;
+    padding: 5px;
+    color: rgb(238, 238, 231);
+    position: relative;
+
+}
+
+QPushButton {
+    background-color: rgba(255, 255, 255, 0.2); /* Półprzezroczyste tło */
+    color: #ffffff; /* Biały tekst */
+    border: 1px solid #ffffff; /* Biała obwódka */
+    padding: 5px 5px; /* Odpowiednie wypełnienie */
+    border-radius: 20px; /* Okrągłe rogi */
+    text-transform: uppercase; /* Tekst wielkimi literami */
+    font-weight: bold; /* Pogrubienie tekstu */
+    font-size: 14px; /* Rozmiar czcionki */
+    transition: all 0.3s ease; /* Animacja przejścia */
+    cursor: pointer; /* Kursor w formie wskaźnika */
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Zwiększenie przejrzystości tła przy najechaniu */
+    border-color: #ffffff; /* Biała obwódka */
+}</string>
+   </property>
+   <widget class="QLabel" name="background">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1011</width>
+      <height>831</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/background/background.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="sources/menu.qrc">:/background/background.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="expenseButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>350</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Dodaj wydatek</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="incomeButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>430</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Dodaj przychód</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="analysisButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>510</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Analiza wydatków</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="welcomeButton">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>250</y>
+      <width>391</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover {
+   background-color: rgba(255, 255, 255, 0.2);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logoutButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgba(99, 188, 230, 0.4);
+}
+
+QPushButton:hover {
+     background-color: rgba(99, 188, 230, 0.6);
+}</string>
+    </property>
+    <property name="text">
+     <string>Wyloguj</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>expenseButton</tabstop>
+  <tabstop>incomeButton</tabstop>
+  <tabstop>analysisButton</tabstop>
+  <tabstop>logoutButton</tabstop>
+  <tabstop>welcomeButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="sources/menu.qrc"/>
+ </resources>
+ <connections/>
+</ui>

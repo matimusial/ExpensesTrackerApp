@@ -87,9 +87,14 @@ class Database:
         return True
 
     def login(self, login, password):
-
+        """
+        Validates the provided login and password against in database.
+        :param login: (str) The login identifier to.
+        :param password: (str) The password.
+        :return: (tuple) A tuple containing the (boolean) - True if logged in, False otherwise; (str) User's name.
+        """
         try:
-            self.cursor.execute("SELECT login, password FROM users")
+            self.cursor.execute("SELECT login, password, firstname FROM users")
         except Exception as e:
             print(e)
             return
@@ -98,9 +103,9 @@ class Database:
         for result in results:
             if self.encryption.decrypt(result[0]) == login:
                 if self.encryption.check_password(password, result[1]):
-                    return True
+                    return True, self.encryption.decrypt(result[2])
 
-        return False
+        return False, ""
 
     def clear_users_table(self):
         """

@@ -8,6 +8,7 @@ from app.auth.login import Login
 
 import app.ui.login.sources.login_rc
 import app.ui.register.sources.register_rc
+import app.ui.menu.sources.menu_rc
 
 
 class App(QMainWindow):
@@ -47,6 +48,20 @@ class App(QMainWindow):
         self.backButton.clicked.connect(self.load_login_ui)
         self.registerButton.clicked.connect(self.register.prepare_registration)
         self.infoButton.clicked.connect(self.register.show_info)
+
+    def load_menu_ui(self, name):
+        """
+        Loads the menu interface and sets up connections for the logout, income add and expanse.
+        :param name: (str) User's name.
+        """
+        ui_path = "app/ui/menu/menu.ui"
+        uic.loadUi(ui_path, self)
+        self.welcomeButton.setEnabled(False)
+        self.welcomeButton.setText(f"Witaj {name}!")
+        self.logoutButton.clicked.connect(self.load_login_ui)
+        #self.analysisButton.clicked.connect(self)
+        #self.incomeButton.clicked.connect(self)
+        #self.expenseButton.clicked.connect(self)
 
 
 if __name__ == "__main__":

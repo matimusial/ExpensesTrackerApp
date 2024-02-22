@@ -36,7 +36,7 @@ class Login:
     def login(self):
         """
         Perform user login based on form data.
-        Reads form data, performs validation, and attempts login.
+        Reads form data, performs validation, and attempts login (loads menu ui).
         Displays appropriate notifications.
         """
         error_message = "Błędny login lub hasło!"
@@ -46,7 +46,9 @@ class Login:
         if not self.form_validation.fill_check(form_data):
             return
 
-        if self.database.login(form_data["login"], form_data["password"]):
-            print("Zalogowano")
+        result = self.database.login(form_data["login"], form_data["password"])
+
+        if result[0]:
+            self.app.load_menu_ui(result[1])
         else:
             self.notifications.set_notification(self.errorLabel, error_message)
