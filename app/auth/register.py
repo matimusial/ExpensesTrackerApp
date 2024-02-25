@@ -37,14 +37,16 @@ class Register(Notifications):
         self.messages = {
             "first_name": "Zła składnia imienia!",
             "last_name": "Zła składnia nazwiska!",
-            "login_duplicate": "Login jest już używany!",
-            "login": "Zła składnia loginu!",
+            "login": "",
             "password": "Zła składnia hasła!",
             "password2": "Hasła się różnią!",
             "pass_mark": "✔",
             "prompt_text": "Czy chcesz założyć konto na podane dane?",
             "prompt_title": "Potwierdzenie rejestracji"
         }
+
+        self.duplicate_login_mess = "Login jest już używany!"
+        self.login_mess = "Zła składna loginu!"
 
         self.pass_style_sheet = "color: green; font-size: 20px;"
         self.pass_alignment = Qt.AlignCenter
@@ -61,22 +63,25 @@ class Register(Notifications):
         """
         form_data = self.form_validation.read_forms(self.user_data)
 
-        for label in self.error_labels.values():
-            self.clear_formatting(label, self.default_alignment)
-
         if not self.form_validation.fill_check(form_data):
             return
 
         # False: no error; True: error
         error_states = []
 
+        self.messages["login"] = self.login_mess
+
         for key in ["first_name", "last_name", "login", "password"]:
+            self.clear_formatting(self.error_labels[key], self.default_alignment)
             error_states.append(self.validate_input(form_data, key))
 
         if True in error_states:
             return
 
+        self.messages["login"] = self.duplicate_login_mess
+
         for key in ["login", "password2"]:
+            self.clear_formatting(self.error_labels[key], self.default_alignment)
             error_states.append(self.validate_credentials(form_data, key))
 
         if True in error_states:
@@ -89,7 +94,7 @@ class Register(Notifications):
                                    form_data["login"],
                                    form_data["password"])
 
-        self.app.load_login_ui()
+            self.app.load_login_ui()
 
     def capitalize_first_letter(self, text):
         """
@@ -139,11 +144,12 @@ class Register(Notifications):
         :return: (boolean) True if an error is found, False otherwise.
         """
         error = False
-        if key == "login_duplicate":
+        if key == "login":
             # if login exists in database
             if not self.database.login_db_check(form_data[key]):
                 # mark error
                 error = True
+
         elif key == "password2":
             # if passwords does not match
             if not self.password_duplication_check(form_data["password"], form_data["password2"]):

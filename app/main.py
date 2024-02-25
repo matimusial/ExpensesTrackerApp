@@ -62,7 +62,7 @@ class App(QMainWindow):
         self.logoutButton.clicked.connect(self.load_login_ui)
         #self.analysisButton.clicked.connect(self)
         #self.incomeButton.clicked.connect(self)
-        self.expenseButton.clicked.connect(self.load_expense_ui(id))
+        self.expenseButton.clicked.connect(lambda: self.load_expense_ui(id))
 
     def load_expense_ui(self, id):
         """
@@ -74,7 +74,7 @@ class App(QMainWindow):
         uic.loadUi(ui_path, self)
 
         current_date = QDate.currentDate()
-        self.dateEdit.setDate(current_date)
+        #self.dateEdit.setDate(current_date)
 
         double_validator = QDoubleValidator()
         self.amountLabel.setValidator(double_validator)
