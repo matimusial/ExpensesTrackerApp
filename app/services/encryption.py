@@ -31,7 +31,7 @@ class Encryption:
 
             if len(self.key) != 24:
                 raise ValueError("Wrong AES-192 key length")
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             raise FileNotFoundError("Encryption key file not found")
         except ValueError as e:
             raise ValueError(f"Failed to initialize Encryption class: {e}")

@@ -159,6 +159,9 @@ QPushButton:hover {
     </property>
    </widget>
    <widget class="QPushButton" name="welcomeButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>330</x>

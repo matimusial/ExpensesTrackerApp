@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="background">
+    <file>background.png</file>
+  </qresource>
+  <qresource prefix="category">
+    <file>category.png</file>
+  </qresource>
+  <qresource prefix="date">
+    <file>date.png</file>
+  </qresource>
+  <qresource prefix="title">
+    <file>title.png</file>
+  </qresource>
+  <qresource prefix="amount">
+    <file>amount.png</file>
+  </qresource>
+</RCC>

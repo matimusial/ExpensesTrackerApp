@@ -91,20 +91,19 @@ class Database:
         Validates the provided login and password against in database.
         :param login: (str) The login identifier to.
         :param password: (str) The password.
-        :return: (tuple) A tuple containing the (boolean) - True if logged in, False otherwise; (str) User's name.
+        :return: (tuple) A tuple containing the (boolean) - True if logged in, False otherwise; (str) User's id.
         """
         try:
-            self.cursor.execute("SELECT login, password, firstname FROM users")
+            self.cursor.execute("SELECT id, login, password FROM users")
         except Exception as e:
             print(e)
             return
 
-        results = self.cursor.fetchall()  # Returns a list of tuples, for example: [("login","password"),]
+        results = self.cursor.fetchall()  # Returns a list of tuples, for example: [("login","password", "id"),]
         for result in results:
-            if self.encryption.decrypt(result[0]) == login:
-                if self.encryption.check_password(password, result[1]):
-                    return True, self.encryption.decrypt(result[2])
-
+            if self.encryption.decrypt(result[1]) == login:
+                if self.encryption.check_password(password, result[2]):
+                    return True, result[0]
         return False, ""
 
     def clear_users_table(self):
@@ -118,3 +117,9 @@ class Database:
         except Exception as e:
             print(e)
             return
+
+    def search_from_users(self, type, id):
+
+        self.cursor.execute("SELECT {} FROM users WHERE id = %s;".format(type), (id,))
+        result = self.cursor.fetchall()
+        return self.encryption.decrypt(result[0][0])
