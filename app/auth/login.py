@@ -3,7 +3,7 @@ from app.services.validation import FormValidation
 from app.utils.notifications import Notifications
 
 
-class Login:
+class Login(Notifications):
     """
     The Login class handles user authentication within the application.
     This class is responsible for managing the login process, including
@@ -31,7 +31,6 @@ class Login:
         self.errorLabel = self.ui.errorLabel
 
         self.form_validation = FormValidation()
-        self.notifications = Notifications(self.ui)
 
     def login(self):
         """
@@ -51,4 +50,4 @@ class Login:
         if result[0]:
             self.app.load_menu_ui(result[1])
         else:
-            self.notifications.set_notification(self.errorLabel, error_message)
+            self.errorLabel.setText(error_message)

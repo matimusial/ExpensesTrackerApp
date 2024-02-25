@@ -12,16 +12,16 @@ from app.auth.login import Login
 class App(QMainWindow):
     """
     The main application window class.
-    It initializes the application with login window.
+    Initializes the application with the login window.
     """
-
     def __init__(self):
         """
-        Initializes the application window, the database connection, and loads the login interface.
+        Initializes the application window, establishes a database connection, and loads the login interface.
         """
         super().__init__()
         self.database = Database()
-        self.load_expense_ui(57)
+        #self.load_expense_ui(57)
+        self.load_login_ui()
         self.show()
 
     def load_login_ui(self):
@@ -39,7 +39,7 @@ class App(QMainWindow):
 
     def load_register_ui(self):
         """
-        Loads the registration interface and sets up connections for the registration, info and back buttons.
+        Loads the registration interface and sets up connections for the registration, info, and back buttons.
         """
         import app.ui.register.sources.register_rc
         ui_path = "app/ui/register/register.ui"
@@ -51,8 +51,8 @@ class App(QMainWindow):
 
     def load_menu_ui(self, id):
         """
-        Loads the menu interface and sets up connections for the logout, income add and expanse.
-        :param id: (str) User's id.
+        Loads the menu interface and sets up connections for logout, income addition, and expense.
+        :param id: (int) User's id in database.
         """
         import app.ui.menu.sources.menu_rc
         ui_path = "app/ui/menu/menu.ui"
@@ -65,6 +65,10 @@ class App(QMainWindow):
         self.expenseButton.clicked.connect(self.load_expense_ui(id))
 
     def load_expense_ui(self, id):
+        """
+        Loads the expense interface and sets up connections for logout and data entry.
+        :param id: (int) User's id in database.
+        """
         import app.ui.expense.sources.expense_rc
         ui_path = "app/ui/expense/expense.ui"
         uic.loadUi(ui_path, self)

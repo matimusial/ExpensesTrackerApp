@@ -312,30 +312,6 @@ QPushButton:hover {
      <string>cofnij poprzedni</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="dateEdit">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>370</y>
-      <width>261</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="minimumDate">
-     <date>
-      <year>2000</year>
-      <month>1</month>
-      <day>1</day>
-     </date>
-    </property>
-    <property name="date">
-     <date>
-      <year>2024</year>
-      <month>2</month>
-      <day>24</day>
-     </date>
-    </property>
-   </widget>
    <widget class="QLabel" name="titleIcon">
     <property name="geometry">
      <rect>
@@ -417,6 +393,57 @@ QPushButton:hover {
     </property>
     <property name="text">
      <string>PLN</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="dateLabel">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>370</y>
+      <width>261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto,sans-serif</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="inputMask">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>30</number>
+    </property>
+    <property name="frame">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string/>
+    </property>
+    <property name="cursorMoveStyle">
+     <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
   </widget>

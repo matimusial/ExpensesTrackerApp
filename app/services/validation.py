@@ -3,12 +3,11 @@ import string
 
 class FormValidation:
     """
-    A class dedicated validate form inputs in an application.
+    A class dedicated to validating form inputs in an application.
     """
-
     def __init__(self):
         """
-        Initializes the FormValidation class with rises_errors dictionary.
+        Initializes the FormValidation class with a raises_errors dictionary.
         """
         self.raises_errors = {
             "lastname_content": "Nazwisko powinno zawierać tylko litery (en).",
@@ -21,7 +20,7 @@ class FormValidation:
 
     def read_forms(self, user_data):
         """
-        Read values from labels to dict.
+        Read values from labels into a dictionary.
         :param user_data: (dict) Labels of UI. {labelName: QLabel class}
         :return: (dict) Text included in labels. {first_name: "Mateusz"}
         """
@@ -43,7 +42,7 @@ class FormValidation:
 
     def validate_login(self, login):
         """
-        Validates if login length is between 6 and 30 and if consists of letters or digits.
+        Validates if login length is between 6 and 30 and if it consists of letters or digits.
         :param login: (str) login to validate.
         :return: (boolean) False if login does not meet the validation criteria, True otherwise.
         """
@@ -60,7 +59,7 @@ class FormValidation:
 
     def validate_password(self, password):
         """
-        Validates if password length is between 6 and 30 and if consists of letters, digits and special characters.
+        Validates if password length is between 6 and 30 and if it consists of letters, digits, and special characters.
         :param password: (str) password to validate.
         :return: (boolean) False if password does not meet the validation criteria, True otherwise.
         """
@@ -77,9 +76,9 @@ class FormValidation:
 
     def validate_name(self, name):
         """
-        Validates if name consist only of letters.
+        Validates if the name consists only of letters.
         :param name: (str) name to validate.
-        :return: (boolean) False if name does not meet the validation criteria, True otherwise.
+        :return: (boolean) False if the name does not meet the validation criteria, True otherwise.
         """
         charset = set(string.ascii_letters + "-" + "ąćęłńóśźż")
 

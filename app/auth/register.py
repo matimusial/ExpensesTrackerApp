@@ -5,11 +5,10 @@ from app.services.validation import FormValidation
 from app.utils.notifications import Notifications
 
 
-class Register:
+class Register(Notifications):
     """
     A class responsible for user registration processes in the application.
     """
-
     def __init__(self, app, ui):
         """
         Initializes the Register class with UI elements, sets up user data and error handling structures.
@@ -53,10 +52,7 @@ class Register:
         self.database = Database()
         self.form_validation = FormValidation()
 
-        style_sheet = self.ui.centralwidget.styleSheet()
-        default_alignment = self.error_labels["login"].alignment()
-
-        self.notifications = Notifications(self.ui, style_sheet, default_alignment)
+        self.default_alignment = self.error_labels["login"].alignment()
 
     def prepare_registration(self):
         """
@@ -66,7 +62,7 @@ class Register:
         form_data = self.form_validation.read_forms(self.user_data)
 
         for label in self.error_labels.values():
-            self.notifications.clear_formatting(label)
+            self.clear_formatting(label, self.default_alignment)
 
         if not self.form_validation.fill_check(form_data):
             return
@@ -86,8 +82,8 @@ class Register:
         if True in error_states:
             return
 
-        if self.notifications.question_prompt(self.messages["prompt_text"],
-                                              self.messages["prompt_title"]):
+        if self.question_prompt(self.messages["prompt_text"],
+                                self.messages["prompt_title"]):
             self.database.register(self.capitalize_first_letter(form_data["first_name"]),
                                    self.capitalize_first_letter(form_data["last_name"]),
                                    form_data["login"],
@@ -164,10 +160,10 @@ class Register:
         :param key: (str) The dict-key indicating the type of input data.
         """
         if error:
-            self.notifications.set_notification(self.error_labels[key], self.messages[key])
+            self.error_labels[key].setText(self.messages[key])
         else:
-            self.notifications.update_label(self.error_labels[key], self.pass_style_sheet, self.messages["pass_mark"],
-                                            self.pass_alignment)
+            self.update_label(self.error_labels[key], self.pass_style_sheet, self.messages["pass_mark"],
+                              self.pass_alignment)
 
     def show_info(self):
         """
@@ -177,4 +173,4 @@ class Register:
                 "• Login musi mieć od 6 do 30 znaków oraz może zawierać litery lub cyfry,\n"
                 "• Hasło musi mieć od 6 do 30 znaków oraz może zawierać litery, cyfry lub znaki specjalne.")
 
-        self.notifications.information_prompt(info, "Polityka składni.")
+        self.information_prompt(info, "Polityka składni.")

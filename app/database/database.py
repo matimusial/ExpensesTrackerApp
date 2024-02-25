@@ -8,7 +8,6 @@ class Database:
     Represents a database connection handler.
     This class is responsible for establishing a connection to a MySQL database, executing various database operations.
     """
-
     def __init__(self):
         """
         Initializes the Database class instance by setting up a connection to the MySQL database using credentials
@@ -91,7 +90,7 @@ class Database:
         Validates the provided login and password against in database.
         :param login: (str) The login identifier to.
         :param password: (str) The password.
-        :return: (tuple) A tuple containing the (boolean) - True if logged in, False otherwise; (str) User's id.
+        :return: (tuple) A tuple containing the (boolean) - True if logged in, False otherwise; (int) User's id.
         """
         try:
             self.cursor.execute("SELECT id, login, password FROM users")
@@ -104,7 +103,7 @@ class Database:
             if self.encryption.decrypt(result[1]) == login:
                 if self.encryption.check_password(password, result[2]):
                     return True, result[0]
-        return False, ""
+        return False, -1
 
     def clear_users_table(self):
         """
@@ -118,8 +117,13 @@ class Database:
             print(e)
             return
 
-    def search_from_users(self, type, id):
-
-        self.cursor.execute("SELECT {} FROM users WHERE id = %s;".format(type), (id,))
+    def search_from_users(self, col_name, id):
+        """
+        Retrieves data from the users table based on the specified column name and user ID.
+        :param col_name: (str) The column name to retrieve data from.
+        :param id: (int) The user ID.
+        :return: (str) The decrypted data from the specified column for the given user ID.
+        """
+        self.cursor.execute("SELECT {} FROM users WHERE id = %s;".format(col_name), (id,))
         result = self.cursor.fetchall()
         return self.encryption.decrypt(result[0][0])
