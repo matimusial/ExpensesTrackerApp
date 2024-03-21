@@ -20,8 +20,8 @@ class App(QMainWindow):
         """
         super().__init__()
         self.database = Database()
-        #self.load_expense_ui(57)
-        self.load_login_ui()
+        self.load_expense_ui(57)
+        #self.load_login_ui()
         self.show()
 
     def load_login_ui(self):
@@ -74,7 +74,7 @@ class App(QMainWindow):
         uic.loadUi(ui_path, self)
 
         current_date = QDate.currentDate()
-        #self.dateEdit.setDate(current_date)
+        self.dateLabel.setText(current_date.toString("dd-MM-yyyy"))
 
         double_validator = QDoubleValidator()
         self.amountLabel.setValidator(double_validator)
