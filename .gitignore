@@ -1,2 +1,5 @@
 __pycache__/
 .idea/
+secrets/*
+secrets_backup/*
+tests/*
