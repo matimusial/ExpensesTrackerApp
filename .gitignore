@@ -1,11 +1,10 @@
 __pycache__/
 .idea/
 
+secrets/*
+secrets_backup/*
+tests/*
 
 !/secrets/info
 !/secrets_backup/info
 !/tests/info
-
-secrets/*
-secrets_backup/*
-tests/*
