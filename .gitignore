@@ -1,8 +1,11 @@
 __pycache__/
 .idea/
-!secrets/info
+
+
+!/secrets/info
+!/secrets_backup/info
+!/tests/info
+
 secrets/*
-!secrets_backup/info
 secrets_backup/*
-!tests/info
 tests/*
